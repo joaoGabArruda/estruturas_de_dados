@@ -12,7 +12,7 @@ typedef struct
 
 typedef struct
 {
-    titem item[max]; // faz um vetor chamado "item" de tamanho 500; o vetor È do tipo "titem", ent„o ele sÛ pode armazenar a "chave"
+    titem item[max]; // faz um vetor chamado "item" de tamanho 500; o vetor √© do tipo "titem", ent√£o ele s√≥ pode armazenar a "chave"
     int primeiro, ultimo;
 } tlista;
 
@@ -25,7 +25,7 @@ void criaLista(tlista *plista)
     plista -> ultimo = plista -> primeiro;
 }
 
-/*--------------------------------- LISTA EST¡ VAZIA? ------------------------------------------------*/
+/*--------------------------------- LISTA EST√Å VAZIA? ------------------------------------------------*/
 
 // verificar se lista esta vazia
 int listavazia (tlista *plista)
@@ -33,7 +33,7 @@ int listavazia (tlista *plista)
     return plista -> primeiro == plista -> ultimo;
 }
 
-/*---------------------------------- INSER«’ES -----------------------------------------------*/
+/*---------------------------------- INSER√á√ïES -----------------------------------------------*/
 
 // insere no inicio
 int insereINICIO (tlista *plista, titem x)
@@ -64,12 +64,12 @@ int insereFIM (tlista *plista, titem x)
     if(plista -> ultimo == max)
         return 0;
 
-    plista -> item[plista -> ultimo++] = x; // ultimo++ significa que ele vai inserir na possiÁ„o ultimo e depois increment·-la em +1
+    plista -> item[plista -> ultimo++] = x; // ultimo++ significa que ele vai inserir na possi√ß√£o ultimo e depois increment√°-la em +1
 
     return 1;
 }
 
-// INSERE EM QUALQUER POSI«√O
+// INSERE EM QUALQUER POSI√á√ÉO
 int insereQUALQUER (tlista *plista, int p, titem x)
 {
     if(plista -> ultimo == max)
@@ -98,7 +98,7 @@ int insereQUALQUER (tlista *plista, int p, titem x)
     return 1;
 }
 
-/*-------------------------------- REMO«’ES -------------------------------------------------*/
+/*-------------------------------- REMO√á√ïES -------------------------------------------------*/
 
 // REMOVER NO INICIO
 int removerINICIO (tlista *plista, titem *px)
@@ -133,8 +133,8 @@ int removerFIM (tlista *plista, titem *px)
     return 1;
 }
 
-// remover de qualquer posiÁ„o
-int removerQUALQUER (tlista *plista,int p, titem *px) //p È uma posiÁ„o; *px devolve o valor removido para o programa principal;
+// remover de qualquer posi√ß√£o
+int removerQUALQUER (tlista *plista,int p, titem *px) //p √© uma posi√ß√£o; *px devolve o valor removido para o programa principal;
 {
     if (listavazia(plista) || p >= plista -> ultimo)
         return 0;
@@ -151,9 +151,9 @@ int removerQUALQUER (tlista *plista,int p, titem *px) //p È uma posiÁ„o; *px dev
     }
 }
 
-/*-------------------------------- OBTER POSI«√O DE ELEMENTO -------------------------------------------------*/
+/*-------------------------------- OBTER POSI√á√ÉO DE ELEMENTO -------------------------------------------------*/
 
-// obter elemento de uma posiÁ„o "p"
+// obter elemento de uma posi√ß√£o "p"
 int getposicao(tlista *plista, int p, titem *px)
 {
     if (listavazia(plista))
@@ -166,7 +166,7 @@ int getposicao(tlista *plista, int p, titem *px)
 
 /*-------------------------------- TAMANHO DA LISTA -------------------------------------------------*/
 
-// obter quantos elementos h· na lista
+// obter quantos elementos h√° na lista
 int tamanho(tlista *plista)
 {
     return plista -> ultimo;
@@ -191,7 +191,7 @@ void imprimir(tlista *plista)
     printf("\n");
 }
 
-/*-------------------------------- FUN«√O MAIN -------------------------------------------------*/
+/*-------------------------------- FUN√á√ÉO MAIN -------------------------------------------------*/
 
 int main()
 {
