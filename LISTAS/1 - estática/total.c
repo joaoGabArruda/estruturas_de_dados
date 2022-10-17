@@ -142,13 +142,15 @@ int removerQUALQUER (tlista *plista,int p, titem *px) //p é uma posição; *px 
     *px = plista -> item[p];
     int cont;
 
-    for(cont = p+1; cont <= plista -> ultimo; cont ++)
+    for(cont = p+1; cont < plista -> ultimo; cont ++)
     {
-        plista -> item[p] = plista ->item[cont];
-        plista -> ultimo--;
+        plista -> item[cont-1] = plista ->item[cont];
 
-        return 1;
     }
+
+    plista -> ultimo--;
+
+    return 1;
 }
 
 /*-------------------------------- OBTER POSIÇÃO DE ELEMENTO -------------------------------------------------*/
