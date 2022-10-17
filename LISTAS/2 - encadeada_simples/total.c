@@ -103,7 +103,7 @@ int insereQUALQUER (tlista *plista, int p, titem x)
 
     do
     {
-        if( (p == 0) && (plista->pprimeiro == NULL) ) // caso a lista esteja vazia e a pessoa dejesa inserir na primeira posição
+        if( (p == 0 || p==1) && (plista->pprimeiro == NULL) ) // caso a lista esteja vazia e a pessoa dejesa inserir na primeira posição
         {
             plista->pprimeiro = novo;
             plista->pultimo = novo;
@@ -149,7 +149,11 @@ int insereQUALQUER (tlista *plista, int p, titem x)
 int removerINICIO (tlista *plista, titem *px)
 {
     if(listavazia(plista))
+    {
+        printf("LISTA VAZIA!!!");
         return 0;
+    }
+
 
     tcelula *paux; // o nó auxiliar impede que voce perca a referência entre o anterior e o próximo do nó que será excluído
 
@@ -168,8 +172,7 @@ int removerFIM (tlista *plista, titem *px)
 {
     if(listavazia(plista))
     {
-        printf("LISTA VAZIA!!!     ");
-        printf("Ultimo ");
+        printf("LISTA VAZIA!!!");
         return 0;
     }
 
@@ -203,11 +206,18 @@ int removerFIM (tlista *plista, titem *px)
 
 
 // REMOVER NO MEIO
-int removerMEIO (tlista *plista, int p, titem *px)
+int removerQUALQUER (tlista *plista, int p, titem *px)
 {
+    if(listavazia(plista))
+    {
+        printf("Impossivel remover! A lista esta vazia.\n");
+        return 0;
+    }
+
+
     if(p > tamanho(plista) - 1) // se a posição for maior que o tamanho da lista - 1 (como a lista começa em 0, é necessário colocar o -1)
     {
-        printf("Impossivel remover pois o Tamanho da lista vai ate: %d e a posicao dada foi: %d\n",tamanho(plista) - 1, p);
+        printf("Impossivel remover pois o Tamanho da lista vai ate: %d e a posicao dada foi: %d\n",tamanho(plista)-1, p);
 
         return 0;
     }
@@ -231,13 +241,13 @@ int removerMEIO (tlista *plista, int p, titem *px)
 
             break;
         }
-        else if (cont == p && paux == plista->pprimeiro) //se a poicao for no meio da lista
+        else if (cont == p && paux == plista->pprimeiro) //se quiser remover no inicio
         {
             plista->pprimeiro = paux->pprox;
 
             break;
         }
-        else if(cont == p)
+        else if(cont == p) // se quiser remover no meio
         {
             panterior->pprox = paux->pprox;
 
@@ -337,28 +347,35 @@ int main()
     item2.chave = 99;
     item3.chave = 1;
 
-    insereFIM(&lista, item1);
+    titem posi;
+    if(getposicao(&lista,2,&posi))
+        printf("valor %d nessa posicao",posi.chave);
+
+    insereINICIO(&lista, item1);
     imprimir(&lista);
 
     insereINICIO(&lista, item2);
     imprimir(&lista);
 
-    printf("Tamanho: %d. ", tamanho(&lista));
+      insereINICIO(&lista, item3);
+    imprimir(&lista);
 
     titem itemRemovido;
-	removerINICIO (&lista, &itemRemovido);
-	printf("Item removido: %d\n", itemRemovido.chave);
+    if(removerMEIO (&lista,1, &itemRemovido))
+        printf("Item removido: %d\n", itemRemovido.chave);
 
-    insereQUALQUER(&lista,1, item3);
+    item3.chave = 7777;
+
+    insereINICIO(&lista, item3);
     imprimir(&lista);
 
-    printf("Tamanho: %d. ", tamanho(&lista));
+     if(removerMEIO (&lista,0, &itemRemovido)) {
+        printf("Item removido: %d\n", itemRemovido.chave);
+        imprimir(&lista);
+     }
 
-
-    removerFIM (&lista, &itemRemovido);
-	printf("Item removido: %d\n", itemRemovido.chave);
-
-    imprimir(&lista);
-	printf("Tamanho: %d. ", tamanho(&lista));
-
+      if(removerMEIO (&lista,1, &itemRemovido)) {
+        printf("Item removido: %d\n", itemRemovido.chave);
+        imprimir(&lista);
+     }
 }
